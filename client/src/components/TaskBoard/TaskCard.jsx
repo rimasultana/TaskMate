@@ -133,7 +133,7 @@ const TaskCard = ({ task, onUpdate, onDelete }) => {
                 isDark ? "text-gray-500" : "text-gray-400"
               }`}
             >
-              {new Date(task.createdAt).toLocaleString()}
+              {new Date(task.updatedAt || Date.now()).toLocaleString()}
             </p>
           </div>
         </div>
