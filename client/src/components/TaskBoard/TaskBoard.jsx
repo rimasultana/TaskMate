@@ -205,7 +205,7 @@ const TaskBoard = () => {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {categories.map((category) => (
             <TaskColumn
               key={category}
@@ -217,8 +217,12 @@ const TaskBoard = () => {
             />
           ))}
         </div>
-        <DragOverlay>
-          {activeTask ? <TaskCard task={activeTask} /> : null}
+        <DragOverlay dropAnimation={null}>
+          {activeTask ? (
+            <div className="transform scale-105">
+              <TaskCard task={activeTask} />
+            </div>
+          ) : null}
         </DragOverlay>
       </DndContext>
     </div>

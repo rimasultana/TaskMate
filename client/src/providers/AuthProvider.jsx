@@ -11,20 +11,25 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+
 export const AuthContext = createContext(null);
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
-  const [theme, setTheme] = useState("light");
-  const [isDarkMode, setDarkMode] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme || "light";
+  });
 
-  const toggleTheme = (checked) => {
-    setDarkMode(checked);
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === "light" ? "dark" : "light");
   };
 
   const createUser = (email, password) => {
@@ -55,9 +60,6 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
     });
-    const storedTheme = localStorage.getItem("theme") || "light";
-    setTheme(storedTheme);
-    document.documentElement.setAttribute("data-theme", storedTheme);
     return () => unsubscribe();
   }, []);
 
@@ -71,7 +73,6 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     theme,
     toggleTheme,
-    isDarkMode,
   };
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };

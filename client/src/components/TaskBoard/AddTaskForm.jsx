@@ -13,45 +13,39 @@ const AddTaskForm = ({ onSubmit, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-4 rounded-md shadow mb-4 space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-          Title
-        </label>
         <input
           type="text"
-          id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          placeholder="Task title"
           maxLength={50}
-          className="mt-1 w-full p-2 border rounded"
+          className="w-full px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-gray-300 placeholder-gray-500 focus:border-[#ff9ff3] focus:outline-none focus:ring-1 focus:ring-[#ff9ff3] transition-colors"
           required
         />
       </div>
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-          Description (optional)
-        </label>
         <textarea
-          id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          placeholder="Task description (optional)"
           maxLength={200}
           rows={3}
-          className="mt-1 w-full p-2 border rounded"
+          className="w-full px-4 py-3 rounded-xl bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-gray-300 placeholder-gray-500 focus:border-[#ff9ff3] focus:outline-none focus:ring-1 focus:ring-[#ff9ff3] transition-colors resize-none"
         />
       </div>
-      <div className="flex justify-end space-x-2">
+      <div className="flex justify-end space-x-3">
         <button
           type="button"
           onClick={onCancel}
-          className="px-3 py-1 text-gray-600 hover:text-gray-800"
+          className="px-4 py-2 rounded-xl text-sm text-gray-400 hover:text-gray-300 border border-[rgba(255,255,255,0.1)] hover:border-[#ff9ff3] transition-all duration-300"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 rounded-xl text-sm text-white bg-gradient-to-r from-[#ff9ff3] to-purple-500 hover:from-[#ff9ff3] hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-[#ff9ff3] focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300"
         >
           Add Task
         </button>
