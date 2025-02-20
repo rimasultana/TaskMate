@@ -8,9 +8,11 @@ const TaskCard = ({ task, onUpdate, onDelete }) => {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
 
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
-    id: task._id,
-  });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: task._id,
+      disabled: isEditing
+    });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -72,7 +74,7 @@ const TaskCard = ({ task, onUpdate, onDelete }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-white p-4 rounded-md shadow cursor-move"
+      className="bg-white p-4 rounded-md shadow cursor-move relative group"
     >
       <div className="flex justify-between items-start">
         <div>
@@ -84,20 +86,28 @@ const TaskCard = ({ task, onUpdate, onDelete }) => {
             {new Date(task.createdAt).toLocaleString()}
           </p>
         </div>
-        <div className="flex space-x-2">
-          <button
-            onClick={() => setIsEditing(true)}
-            className="text-gray-600 hover:text-blue-500"
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => onDelete(task._id)}
-            className="text-gray-600 hover:text-red-500"
-          >
-            Delete
-          </button>
-        </div>
+      </div>
+      <div className="absolute top-2 right-2 flex space-x-2">
+        <button
+          type="button"
+          onMouseDown={(e) => {
+            e.stopPropagation();
+            setIsEditing(true);
+          }}
+          className="text-gray-600 hover:text-blue-500 z-10"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          onMouseDown={(e) => {
+            e.stopPropagation();
+            onDelete(task._id);
+          }}
+          className="text-gray-600 hover:text-red-500 z-10"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

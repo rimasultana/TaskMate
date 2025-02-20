@@ -1,6 +1,6 @@
-import useAuth from '@/hooks/useAuth';
-import TaskBoard from '../components/TaskBoard/TaskBoard';
-import { Navigate } from 'react-router';
+import useAuth from "@/hooks/useAuth";
+import TaskBoard from "../components/TaskBoard/TaskBoard";
+import { Navigate } from "react-router";
 
 const Home = () => {
   const { user, loading } = useAuth();
