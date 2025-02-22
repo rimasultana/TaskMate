@@ -24,12 +24,12 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
     // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
+    // await client.db("admin").command({ ping: 1 });
+    // console.log(
+    //   "Pinged your deployment. You successfully connected to MongoDB!"
+    // );
     const database = client.db("TaskMate");
     const usersCollection = database.collection("users");
     const tasksCollection = database.collection("tasks");
@@ -56,7 +56,7 @@ async function run() {
         const task = {
           ...req.body,
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         };
         const result = await tasksCollection.insertOne(task);
         res.status(201).json(result);
@@ -83,7 +83,7 @@ async function run() {
         const { taskId } = req.params;
         const updates = {
           ...req.body,
-          updatedAt: new Date()
+          updatedAt: new Date(),
         };
         const result = await tasksCollection.updateOne(
           { _id: new ObjectId(taskId) },
@@ -99,7 +99,7 @@ async function run() {
       try {
         const { taskId } = req.params;
         const result = await tasksCollection.deleteOne({
-          _id: new ObjectId(taskId)
+          _id: new ObjectId(taskId),
         });
         res.json(result);
       } catch (error) {
@@ -113,16 +113,16 @@ async function run() {
         const operations = req.body.map(({ _id, category, order }) => ({
           updateOne: {
             filter: { _id: new ObjectId(_id) },
-            update: { 
-              $set: { 
+            update: {
+              $set: {
                 category,
                 order,
-                updatedAt: new Date()
-              }
-            }
-          }
+                updatedAt: new Date(),
+              },
+            },
+          },
         }));
-        
+
         const result = await tasksCollection.bulkWrite(operations);
         res.json(result);
       } catch (error) {
