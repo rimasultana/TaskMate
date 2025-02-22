@@ -17,7 +17,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold">
               <span className="bg-gradient-to-r from-white via-[#ff9ff3] to-white bg-clip-text text-transparent">
-                TaskFlow
+                TaskMate
               </span>
             </Link>
           </div>

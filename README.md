@@ -4,8 +4,8 @@ TaskMate is a modern, real-time task management application that helps users org
 
 ## 🌐 Live Links
 
-- Frontend: [TaskMate Client](https://taskmate-client.vercel.app)
-- Backend: [TaskMate Server](https://taskmate-server.vercel.app)
+- Frontend: [TaskMate Client](https://taskmate-9c56d.web.app)
+<!-- - Backend: [TaskMate Server](https://taskmate-server.vercel.app) -->
 
 ## ✨ Key Features
 
@@ -73,7 +73,7 @@ TaskMate is a modern, real-time task management application that helps users org
 ### Frontend Setup
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/taskmate.git
+   git clone https://github.com/rimasultana/TaskMate
    cd taskmate/client
    ```
 
@@ -84,10 +84,13 @@ TaskMate is a modern, real-time task management application that helps users org
 
 3. Create `.env` file in the client directory
    ```env
-   VITE_FIREBASE_API_KEY=your_firebase_api_key
-   VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-   VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
-   VITE_API_URL=your_backend_url
+   VITE_apiKey=your_firebase_api_key
+   VITE_authDomain=your_firebase_auth_domain
+   VITE_projectId=your_firebase_project_id
+   VITE_storageBucket=your_firebase_storage_bucket
+   VITE_messagingSenderId=your_firebase_messaging_sender_id
+   VITE_appId=your_firebase_app_id
+   VITE_backendUrl=your_backend_url
    ```
 
 4. Start the development server
@@ -143,7 +146,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Rima Sultana**
 - GitHub: [@rimasultana](https://github.com/rimasultana)
-- Portfolio: [rimasultana.com](https://rimasultana.com)
+- Portfolio: [rimasultana.com](https://rimasultana.vercel.app/)
 
 ## 🙏 Acknowledgments
 
